@@ -1,0 +1,11 @@
+# Large datasets
+data/stage_2_data/*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Windows metadata
+*:Zone.Identifier
