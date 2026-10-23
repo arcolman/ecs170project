@@ -9,3 +9,9 @@ venv/
 
 # Windows metadata
 *:Zone.Identifier
+
+# IDE settings
+.idea/
+
+# Throwaway demo output
+result/stage_2_result/demo/
