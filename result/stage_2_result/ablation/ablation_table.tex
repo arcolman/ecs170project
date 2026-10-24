@@ -1,0 +1,45 @@
+\begin{tabular}{llccc}
+\hline
+Changed setting & Value & Accuracy (\%) & F1 (weighted) (\%) & F1 (macro) (\%) \\
+\hline
+depth & 1 hidden layer (256) & 98.04 $\pm$ 0.09 & 98.04 $\pm$ 0.09 & 98.03 $\pm$ 0.09 \\
+ & 2 hidden layers (256-128) & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & 3 hidden layers (512-256-128) & \textbf{98.16 $\pm$ 0.24} & \textbf{98.16 $\pm$ 0.24} & \textbf{98.15 $\pm$ 0.24} \\
+ & 4 hidden layers (512-256-128-64) & 97.89 $\pm$ 0.19 & 97.89 $\pm$ 0.19 & 97.87 $\pm$ 0.19 \\
+\hline
+width & 64-32 & 97.14 $\pm$ 0.13 & 97.14 $\pm$ 0.13 & 97.12 $\pm$ 0.13 \\
+ & 256-128 & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & 1024-512 & \textbf{97.93 $\pm$ 0.22} & \textbf{97.93 $\pm$ 0.22} & \textbf{97.92 $\pm$ 0.22} \\
+\hline
+activation & ReLU & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & Tanh & \textbf{98.10 $\pm$ 0.13} & \textbf{98.10 $\pm$ 0.13} & \textbf{98.09 $\pm$ 0.13} \\
+ & Sigmoid & 97.96 $\pm$ 0.13 & 97.96 $\pm$ 0.12 & 97.94 $\pm$ 0.12 \\
+\hline
+optimizer & Adam (lr 1e-3) & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & SGD (lr 0.01) & 93.91 $\pm$ 0.08 & 93.90 $\pm$ 0.08 & 93.83 $\pm$ 0.08 \\
+ & SGD + momentum 0.9 (lr 0.01) & 97.95 $\pm$ 0.05 & 97.95 $\pm$ 0.05 & 97.94 $\pm$ 0.05 \\
+ & RMSprop (lr 1e-3) & \textbf{98.17 $\pm$ 0.03} & \textbf{98.17 $\pm$ 0.03} & \textbf{98.15 $\pm$ 0.04} \\
+\hline
+learning rate & Adam lr 1e-4 & 97.31 $\pm$ 0.10 & 97.31 $\pm$ 0.10 & 97.29 $\pm$ 0.10 \\
+ & Adam lr 1e-3 & \textbf{97.86 $\pm$ 0.21} & \textbf{97.86 $\pm$ 0.21} & \textbf{97.84 $\pm$ 0.22} \\
+ & Adam lr 1e-2 & 97.48 $\pm$ 0.08 & 97.48 $\pm$ 0.08 & 97.46 $\pm$ 0.08 \\
+\hline
+loss & Cross-entropy & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & Cross-entropy, label smoothing 0.1 & \textbf{98.55 $\pm$ 0.02} & \textbf{98.55 $\pm$ 0.02} & \textbf{98.54 $\pm$ 0.02} \\
+ & MSE on softmax vs one-hot & 98.07 $\pm$ 0.10 & 98.07 $\pm$ 0.10 & 98.05 $\pm$ 0.09 \\
+\hline
+batch size & batch 32 & 97.92 $\pm$ 0.21 & 97.92 $\pm$ 0.21 & 97.90 $\pm$ 0.21 \\
+ & batch 128 & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & batch 512 & \textbf{97.98 $\pm$ 0.03} & \textbf{97.98 $\pm$ 0.03} & \textbf{97.96 $\pm$ 0.03} \\
+ & batch 2048 & 97.55 $\pm$ 0.06 & 97.55 $\pm$ 0.06 & 97.53 $\pm$ 0.06 \\
+\hline
+regularization & none & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & dropout 0.2 & \textbf{98.27 $\pm$ 0.06} & \textbf{98.27 $\pm$ 0.06} & \textbf{98.26 $\pm$ 0.06} \\
+ & dropout 0.5 & 98.09 $\pm$ 0.12 & 98.09 $\pm$ 0.12 & 98.08 $\pm$ 0.12 \\
+ & weight decay 1e-4 & 98.01 $\pm$ 0.13 & 98.01 $\pm$ 0.13 & 97.99 $\pm$ 0.12 \\
+\hline
+initialization & PyTorch default (Kaiming uniform, a=sqrt(5)) & 97.86 $\pm$ 0.21 & 97.86 $\pm$ 0.21 & 97.84 $\pm$ 0.22 \\
+ & Kaiming normal (He) & \textbf{97.99 $\pm$ 0.08} & \textbf{97.99 $\pm$ 0.08} & \textbf{97.97 $\pm$ 0.08} \\
+ & Xavier uniform (Glorot) & 97.84 $\pm$ 0.24 & 97.84 $\pm$ 0.24 & 97.83 $\pm$ 0.24 \\
+\hline
+\end{tabular}

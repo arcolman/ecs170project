@@ -101,3 +101,42 @@ def plot_comparison(results, fig_path, metrics=PLOT_METRICS, sort_by='accuracy')
     fig.savefig(fig_path, dpi=200)
     plt.close(fig)
     print(f'saved comparison plot to {fig_path}')
+
+
+def save_history(history, json_path):
+    '''Save a per-epoch training history (Method_MLP.history), so curves can be re-plotted without retraining.'''
+    json_path = Path(json_path)
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.write_text(json.dumps(history))
+
+
+def plot_learning_curves(histories, fig_path, key='train_loss', ylabel='Training loss', log_y=False, title=None):
+    '''Line plot of a per-epoch history value against the training epoch.
+
+    histories is {label: history}, where history is Method_MLP.history. Up to four curves per plot, each with its
+    own color and marker shape so curves stay distinguishable in grayscale and for color-blind readers.'''
+    assert len(histories) <= len(SERIES_STYLES), f'plot at most {len(SERIES_STYLES)} curves; split them into groups'
+    fig_path = Path(fig_path)
+    fig_path.parent.mkdir(parents=True, exist_ok=True)
+
+    fig, ax = plt.subplots(figsize=(6.5, 3.6))
+    for (label, history), (color, marker) in zip(histories.items(), SERIES_STYLES):
+        epochs = history['epoch']
+        # a marker every few epochs is enough to tell curves apart without cluttering the line
+        ax.plot(epochs, history[key], color=color, linewidth=2, marker=marker, markersize=6,
+                markevery=max(1, len(epochs) // 8), markeredgecolor='white', label=label, zorder=3)
+    ax.set_xlabel('Epoch')
+    ax.set_ylabel(ylabel)
+    if log_y:
+        ax.set_yscale('log')
+    if title:
+        ax.set_title(title, fontsize=10, loc='left')
+    ax.grid(color='#e4e3df', linewidth=0.8, zorder=0)
+    for side in ('top', 'right'):
+        ax.spines[side].set_visible(False)
+    if len(histories) > 1:
+        ax.legend(frameon=False, fontsize=9)
+    fig.tight_layout()
+    fig.savefig(fig_path, dpi=200)
+    plt.close(fig)
+    print(f'saved learning curve plot to {fig_path}')
