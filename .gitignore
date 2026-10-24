@@ -15,3 +15,7 @@ venv/
 
 # Throwaway demo output
 result/stage_2_result/demo/
+
+# macOS metadata and local dataset copies
+.DS_Store
+data/downloaded data/

@@ -1,0 +1,6 @@
+torch
+numpy
+scikit-learn
+matplotlib
+# SciPy (needed by scikit-learn) 1.15.x Mac wheels fail to load on newer macOS ("zero-fill section type" dlopen error)
+scipy<1.15
