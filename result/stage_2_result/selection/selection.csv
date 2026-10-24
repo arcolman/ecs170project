@@ -1,0 +1,6 @@
+candidate,val_accuracy_mean,val_accuracy_std,val_f1_macro_mean,training_time_s_mean
+deep_ls_dropout_cosine30,0.9860,0.0003,0.9860,49.1
+wide_ls_dropout_cosine30,0.9858,0.0002,0.9857,90.7
+deep_ls_dropout,0.9836,0.0015,0.9835,26.1
+ls,0.9834,0.0005,0.9834,10.2
+ls_dropout,0.9824,0.0004,0.9822,11.8
