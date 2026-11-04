@@ -1,0 +1,2 @@
+config,accuracy,precision_weighted,recall_weighted,f1_weighted,f1_macro
+baseline,0.9894,0.9895,0.9894,0.9894,0.9894

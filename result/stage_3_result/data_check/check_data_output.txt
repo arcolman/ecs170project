@@ -1,0 +1,16 @@
+loading data from /Users/gabrielvenezia/Developer/ecs170project/data/stage_3_data/MNIST...
+train: X=(60000, 1, 28, 28), y=(60000,), labels 0..9
+test: X=(10000, 1, 28, 28), y=(10000,), labels 0..9
+MNIST train: X (60000, 1, 28, 28) float32, pixels 0.00..1.00, labels 0..9, class counts [5923, 6742, 5958, 6131, 5842, 5421, 5918, 6265, 5851, 5949]
+MNIST test: X (10000, 1, 28, 28) float32, pixels 0.00..1.00, labels 0..9, class counts [980, 1135, 1032, 1010, 982, 892, 958, 1028, 974, 1009]
+loading data from /Users/gabrielvenezia/Developer/ecs170project/data/stage_3_data/ORL...
+train: X=(360, 1, 112, 92), y=(360,), labels 0..39
+test: X=(40, 1, 112, 92), y=(40,), labels 0..39
+ORL train: X (360, 1, 112, 92) float32, pixels 0.00..0.98, labels 0..39, class counts [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+ORL test: X (40, 1, 112, 92) float32, pixels 0.00..0.98, labels 0..39, class counts [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+loading data from /Users/gabrielvenezia/Developer/ecs170project/data/stage_3_data/CIFAR...
+train: X=(50000, 3, 32, 32), y=(50000,), labels 0..9
+test: X=(10000, 3, 32, 32), y=(10000,), labels 0..9
+CIFAR train: X (50000, 3, 32, 32) float32, pixels 0.00..1.00, labels 0..9, class counts [5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000]
+CIFAR test: X (10000, 3, 32, 32) float32, pixels 0.00..1.00, labels 0..9, class counts [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+Dataset checks passed. Ready for CNN training.
