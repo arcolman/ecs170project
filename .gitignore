@@ -19,3 +19,7 @@ result/stage_2_result/demo/
 # macOS metadata and local dataset copies
 .DS_Store
 data/downloaded data/
+
+# Stage 3 image datasets are too large for GitHub (CIFAR > 100MB); share them through the drive
+data/stage_3_data/*
+!data/stage_3_data/.gitkeep

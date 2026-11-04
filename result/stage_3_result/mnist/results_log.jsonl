@@ -1,0 +1,1 @@
+{"name": "baseline", "config": {"seed": 1}, "scores": {"accuracy": 0.9894, "precision_weighted": 0.989455189705104, "recall_weighted": 0.9894, "f1_weighted": 0.989397301898544, "precision_macro": 0.9894573879736972, "recall_macro": 0.9893499582636892, "f1_macro": 0.989373674649614, "precision_micro": 0.9894, "recall_micro": 0.9894, "f1_micro": 0.9894}}
