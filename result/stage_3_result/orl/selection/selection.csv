@@ -1,0 +1,7 @@
+candidate,val_accuracy_mean,val_accuracy_std,val_f1_macro_mean,n_parameters,training_time_s_mean
+depth3_fc128_dropout_0.5,0.9917,0.0118,0.9889,1331368,32.9
+baseline,0.9833,0.0118,0.9778,837608,21.8
+dropout_0.5,0.9833,0.0118,0.9778,837608,21.2
+f32_64_k3_dropout_0.5,0.9833,0.0118,0.9778,1667496,34.4
+k3_dropout_0.5,0.9750,0.0000,0.9667,829160,15.1
+f32_64_dropout_0.5,0.9750,0.0000,0.9667,1700776,50.3

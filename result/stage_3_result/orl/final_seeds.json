@@ -1,0 +1,89 @@
+{
+  "per_seed": {
+    "1": {
+      "accuracy": 0.95,
+      "precision_weighted": 0.925,
+      "recall_weighted": 0.95,
+      "f1_weighted": 0.9333333333333332,
+      "precision_macro": 0.925,
+      "recall_macro": 0.95,
+      "f1_macro": 0.9333333333333332,
+      "precision_micro": 0.95,
+      "recall_micro": 0.95,
+      "f1_micro": 0.95,
+      "train_accuracy": 1.0
+    },
+    "2": {
+      "accuracy": 0.925,
+      "precision_weighted": 0.8875,
+      "recall_weighted": 0.925,
+      "f1_weighted": 0.9,
+      "precision_macro": 0.8875,
+      "recall_macro": 0.925,
+      "f1_macro": 0.9,
+      "precision_micro": 0.925,
+      "recall_micro": 0.925,
+      "f1_micro": 0.925,
+      "train_accuracy": 1.0
+    },
+    "3": {
+      "accuracy": 1.0,
+      "precision_weighted": 1.0,
+      "recall_weighted": 1.0,
+      "f1_weighted": 1.0,
+      "precision_macro": 1.0,
+      "recall_macro": 1.0,
+      "f1_macro": 1.0,
+      "precision_micro": 1.0,
+      "recall_micro": 1.0,
+      "f1_micro": 1.0,
+      "train_accuracy": 1.0
+    }
+  },
+  "summary": {
+    "accuracy": {
+      "mean": 0.9583333333333334,
+      "std": 0.03118047822311617
+    },
+    "precision_weighted": {
+      "mean": 0.9375,
+      "std": 0.04677071733467428
+    },
+    "recall_weighted": {
+      "mean": 0.9583333333333334,
+      "std": 0.03118047822311617
+    },
+    "f1_weighted": {
+      "mean": 0.9444444444444443,
+      "std": 0.041573970964154904
+    },
+    "precision_macro": {
+      "mean": 0.9375,
+      "std": 0.04677071733467428
+    },
+    "recall_macro": {
+      "mean": 0.9583333333333334,
+      "std": 0.03118047822311617
+    },
+    "f1_macro": {
+      "mean": 0.9444444444444443,
+      "std": 0.041573970964154904
+    },
+    "precision_micro": {
+      "mean": 0.9583333333333334,
+      "std": 0.03118047822311617
+    },
+    "recall_micro": {
+      "mean": 0.9583333333333334,
+      "std": 0.03118047822311617
+    },
+    "f1_micro": {
+      "mean": 0.9583333333333334,
+      "std": 0.03118047822311617
+    },
+    "train_accuracy": {
+      "mean": 1.0,
+      "std": 0.0
+    }
+  }
+}
