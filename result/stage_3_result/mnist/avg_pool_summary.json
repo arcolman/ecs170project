@@ -1,0 +1,29 @@
+{
+  "name": "avg_pool",
+  "settings": {
+    "seed": 1,
+    "device": "cpu",
+    "pool": "avg"
+  },
+  "epochs": 10,
+  "learning_rate": 0.001,
+  "batch_size": 128,
+  "optimizer": "adam",
+  "loss": "cross_entropy",
+  "training_seconds": 242.12851762771606,
+  "final_train_accuracy": 0.9924166666666666,
+  "parameter_count": 28938,
+  "scores": {
+    "accuracy": 0.9886,
+    "precision_weighted": 0.9886736487522734,
+    "recall_weighted": 0.9886,
+    "f1_weighted": 0.9886035179655072,
+    "precision_macro": 0.9885406947715,
+    "recall_macro": 0.9885177138893425,
+    "f1_macro": 0.9884954232704416,
+    "precision_micro": 0.9886,
+    "recall_micro": 0.9886,
+    "f1_micro": 0.9886
+  },
+  "torch_version": "2.15.0+cpu"
+}

@@ -1,2 +1,5 @@
 config,accuracy,precision_weighted,recall_weighted,f1_weighted,f1_macro
-baseline,0.9894,0.9895,0.9894,0.9894,0.9894
+baseline,0.9891,0.9892,0.9891,0.9891,0.9891
+kernel3,0.9888,0.9888,0.9888,0.9888,0.9887
+avg_pool,0.9886,0.9887,0.9886,0.9886,0.9885
+one_block,0.9850,0.9851,0.9850,0.9850,0.9849
