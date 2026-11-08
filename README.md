@@ -64,6 +64,7 @@ Unzip the instructor's `stage_3_data.zip` so that the `MNIST`, `ORL` and `CIFAR`
 ```bash
 .venv/bin/python -m script.stage_3_script.check_data        # shapes, label ranges and a sample image per dataset
 .venv/bin/python -m script.stage_3_script.script_cnn_mnist  # train and test the MNIST CNN
+.venv/bin/python -m script.stage_3_script.script_cnn_mnist_ablation  # three MNIST ablations, resume completed runs
 .venv/bin/python -m script.stage_3_script.test_cnn          # quick check on synthetic data (no datasets needed)
 ```
 
@@ -76,8 +77,10 @@ Unzip the instructor's `stage_3_data.zip` so that the `MNIST`, `ORL` and `CIFAR`
 - The loaders return `(N, C, H, W)` float32 pixels scaled to [0, 1] and int64 labels starting at 0. ORL is stored as three identical RGB channels, so its loader keeps one channel and shifts its labels from 1–40 to 0–39.
 - `Method_CNN_MNIST` takes its architecture as settings: `conv_channels`, `kernel_size`, `padding`, `stride`, `pool` (`'max'` or `'avg'`), `batch_norm`, `fc_dims`, `dropout`, plus the same training options as the MLP. It uses an NVIDIA GPU (CUDA) or an Apple GPU (MPS) when one is available.
 - **Config experiments:** in `script_cnn_mnist.py`, set `run_name` and `settings` (e.g. `settings = {'kernel_size': 3}`) and run the script again. Each run is added to `result/stage_3_result/mnist/results_table.csv`, along with its own learning curve.
+- **MNIST ablations:** `script_cnn_mnist_ablation` runs 3x3 kernels, one convolution block, and average pooling, each changing one baseline setting. It uses seed 1, CPU with four threads, and 10 epochs. Run the baseline script first. Each experiment saves its own predictions, weights, history, summary and curve; the script also generates combined loss curves and a metric comparison. An existing `<run>_summary.json` marks a completed run. These test-set comparisons describe ablations; they do not perform validation-based model selection.
 - **ORL / CIFAR models:** copy `Method_CNN_MNIST.py` and the MNIST script, then change `in_channels`, `input_size` and `output_dim`. Save their results to `result/stage_3_result/orl/` and `result/stage_3_result/cifar/`.
 - **Baseline result:** 2 conv blocks (16 and 32 filters, 5 × 5 kernels, ReLU, max-pool) and one fully connected layer reach **98.94%** test accuracy on MNIST (weighted F1 0.9894) after 10 epochs, taking 33 s on an Apple M-chip.
+- **Aron's MNIST reproduction and ablations:** the Windows CPU baseline reaches **98.91%** accuracy; 3x3 kernels reach **98.88%**, one conv block **98.50%**, and average pooling **98.86%**. All use seed 1 and 10 epochs. The current MNIST table, baseline history and plots use this CPU reproduction; the JSON-lines log also retains the earlier Apple run. Draft report text is in `result/stage_3_result/mnist/MNIST_report_text.md`.
 
 ## Contributing
 

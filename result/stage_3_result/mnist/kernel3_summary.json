@@ -1,0 +1,29 @@
+{
+  "name": "kernel3",
+  "settings": {
+    "seed": 1,
+    "device": "cpu",
+    "kernel_size": 3
+  },
+  "epochs": 10,
+  "learning_rate": 0.001,
+  "batch_size": 128,
+  "optimizer": "adam",
+  "loss": "cross_entropy",
+  "training_seconds": 176.80948162078857,
+  "final_train_accuracy": 0.9936166666666667,
+  "parameter_count": 20490,
+  "scores": {
+    "accuracy": 0.9888,
+    "precision_weighted": 0.9888488362445645,
+    "recall_weighted": 0.9888,
+    "f1_weighted": 0.9888020483086888,
+    "precision_macro": 0.9888635910986483,
+    "recall_macro": 0.9886462380427045,
+    "f1_macro": 0.9887323153984928,
+    "precision_micro": 0.9888,
+    "recall_micro": 0.9888,
+    "f1_micro": 0.9888
+  },
+  "torch_version": "2.15.0+cpu"
+}
