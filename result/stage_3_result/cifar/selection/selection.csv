@@ -1,0 +1,7 @@
+candidate,val_accuracy_mean,val_accuracy_std,val_f1_macro_mean,n_parameters,training_time_s_mean
+deep_32_64_128_4blocks,0.7755,0.0065,0.7748,654346,84.5
+deep_32_64_128_k5,0.7687,0.0260,0.7674,786186,137.3
+deep_32_64_128,0.7657,0.0093,0.7600,620810,71.2
+bn_depth3_k3,0.7019,0.0086,0.6992,34058,34.5
+bn_depth3,0.6963,0.0139,0.6932,75786,39.9
+baseline,0.6795,0.0077,0.6762,34538,15.8

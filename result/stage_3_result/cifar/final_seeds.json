@@ -1,0 +1,89 @@
+{
+  "per_seed": {
+    "1": {
+      "accuracy": 0.7311,
+      "precision_weighted": 0.7683157880945313,
+      "recall_weighted": 0.7311,
+      "f1_weighted": 0.733635170478643,
+      "precision_macro": 0.7683157880945312,
+      "recall_macro": 0.7311,
+      "f1_macro": 0.733635170478643,
+      "precision_micro": 0.7311,
+      "recall_micro": 0.7311,
+      "f1_micro": 0.7311,
+      "train_accuracy": 0.85932
+    },
+    "2": {
+      "accuracy": 0.8005,
+      "precision_weighted": 0.8043683559724932,
+      "recall_weighted": 0.8005,
+      "f1_weighted": 0.8006292445301744,
+      "precision_macro": 0.8043683559724932,
+      "recall_macro": 0.8004999999999999,
+      "f1_macro": 0.8006292445301744,
+      "precision_micro": 0.8005,
+      "recall_micro": 0.8005,
+      "f1_micro": 0.8005,
+      "train_accuracy": 0.9526
+    },
+    "3": {
+      "accuracy": 0.7855,
+      "precision_weighted": 0.8011627495688421,
+      "recall_weighted": 0.7855,
+      "f1_weighted": 0.7865707747552904,
+      "precision_macro": 0.801162749568842,
+      "recall_macro": 0.7855,
+      "f1_macro": 0.7865707747552902,
+      "precision_micro": 0.7855,
+      "recall_micro": 0.7855,
+      "f1_micro": 0.7855,
+      "train_accuracy": 0.93176
+    }
+  },
+  "summary": {
+    "accuracy": {
+      "mean": 0.7723666666666666,
+      "std": 0.02981558131059814
+    },
+    "precision_weighted": {
+      "mean": 0.7912822978786221,
+      "std": 0.016292419645361482
+    },
+    "recall_weighted": {
+      "mean": 0.7723666666666666,
+      "std": 0.02981558131059814
+    },
+    "f1_weighted": {
+      "mean": 0.7736117299213693,
+      "std": 0.0288444578357923
+    },
+    "precision_macro": {
+      "mean": 0.791282297878622,
+      "std": 0.01629241964536151
+    },
+    "recall_macro": {
+      "mean": 0.7723666666666666,
+      "std": 0.02981558131059811
+    },
+    "f1_macro": {
+      "mean": 0.7736117299213693,
+      "std": 0.028844457835792283
+    },
+    "precision_micro": {
+      "mean": 0.7723666666666666,
+      "std": 0.02981558131059814
+    },
+    "recall_micro": {
+      "mean": 0.7723666666666666,
+      "std": 0.02981558131059814
+    },
+    "f1_micro": {
+      "mean": 0.7723666666666666,
+      "std": 0.02981558131059814
+    },
+    "train_accuracy": {
+      "mean": 0.9145599999999999,
+      "std": 0.03997640637509415
+    }
+  }
+}
