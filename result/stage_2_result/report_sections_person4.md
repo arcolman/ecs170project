@@ -1,6 +1,6 @@
-# Stage 2 report: Experiment analysis, Discussion, Conclusion (Person 4)
+# ECS 170 - Stage 2 Report: Experiment analysis, Discussion, Conclusion
 
-Numbers come from `result/stage_2_result/ablation/ablation_table.csv`, `ablation/runs.jsonl` and `selection/selection.csv`.
+The data for this report comes from `result/stage_2_result/ablation/ablation_table.csv`, `ablation/runs.jsonl` and `selection/selection.csv`.
 Test accuracy is mean ± std over seeds 1, 2, 3. Table and figure names are in [brackets].
 
 ---
