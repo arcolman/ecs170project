@@ -7,7 +7,7 @@ Team course project for ECS 170 (Artificial Intelligence) at UC Davis. Each stag
 | 1 | Group formation and environment setup | Done |
 | 2 | Handwritten digit classification with a multi-layer perceptron (MLP) | Done |
 | 3 | Image classification with convolutional neural networks (CNN) on MNIST, ORL faces and CIFAR-10 | In progress |
-| 4 | Text classification and generation with recurrent neural networks (RNN) | Not started |
+| 4 | Text classification and generation with recurrent neural networks (RNN) | In progress |
 | 5 | Node classification with graph neural networks (GCN) | Not started |
 
 ## Setup
@@ -78,6 +78,30 @@ Unzip the instructor's `stage_3_data.zip` so that the `MNIST`, `ORL` and `CIFAR`
 - **Config experiments:** in `script_cnn_mnist.py`, set `run_name` and `settings` (e.g. `settings = {'kernel_size': 3}`) and run the script again. Each run is added to `result/stage_3_result/mnist/results_table.csv`, along with its own learning curve.
 - **ORL / CIFAR models:** copy `Method_CNN_MNIST.py` and the MNIST script, then change `in_channels`, `input_size` and `output_dim`. Save their results to `result/stage_3_result/orl/` and `result/stage_3_result/cifar/`.
 - **Baseline result:** 2 conv blocks (16 and 32 filters, 5 × 5 kernels, ReLU, max-pool) and one fully connected layer reach **98.94%** test accuracy on MNIST (weighted F1 0.9894) after 10 epochs, taking 33 s on an Apple M-chip.
+
+## Stage 4: RNN
+
+Unzip the instructor's `stage_4_data` so that `text_classification/` (with `train/` and `test/`) and `text_generation/` sit directly in `data/stage_4_data/`, then:
+
+```bash
+.venv/bin/python -m script.stage_4_script.check_data           # 4-1: dataset statistics, examples, review-length histogram
+.venv/bin/python -m script.stage_4_script.test_rnn             # quick check on synthetic data (no datasets needed)
+.venv/bin/python -m script.stage_4_script.script_rnn_cls       # vanilla RNN classifier: scores, curves, confusion matrix
+.venv/bin/python -m script.stage_4_script.script_rnn_cls lstm  # any run defined in RUNS (rnn, lstm, gru, ...)
+```
+
+**Classification data (IMDB reviews):** 25,000 train / 25,000 test, positive vs negative, balanced. `Dataset_Loader_IMDB`:
+- **Cleaning:** strips HTML line breaks, lowercases, removes punctuation, digits and stop words. Negations stay: "didn't" becomes "did not", and "not", "no" and "never" are kept.
+- **Validation split:** a fixed, stratified 10% of the training set (seed 42), used for the per-epoch validation curves. The test set is scored once.
+- **Vocabulary:** the 20,000 most frequent training words that appear at least twice. Every other word becomes `<unk>`.
+- **Output:** each review is padded or cut to 200 tokens. Every split is `{'X', 'lengths', 'y'}`.
+
+`Method_RNN_Classification`: embedding → recurrent layer(s) → linear, with sequences packed so padding is skipped.
+- **Recurrent unit:** `rnn_type` is `'rnn'`, `'lstm'` or `'gru'`. Everything else is shared, so the three units are compared under identical settings.
+- **Other settings:** `embedding_dim`, `embedding_weights` (e.g. GloVe via `load_glove`), `hidden_dim`, `num_layers`, `bidirectional`, `pooling` (`'last'`, `'mean'` or `'max'`), `dropout`, `grad_clip`, `restore_best`, plus the usual training options.
+- **Device:** runs on the CPU unless CUDA is available. For these models the Apple GPU is not faster: the vanilla RNN takes about 9 s per epoch on the CPU and about 66 s on MPS.
+
+**Shared rules (team guide):** use the same seed, split and preprocessing for every model. For RNN vs LSTM vs GRU, change only `rnn_type`. Name figures `<task>_<model>_<what>.png`. Results go to `result/stage_4_result/classification/`.
 
 ## Contributing
 
