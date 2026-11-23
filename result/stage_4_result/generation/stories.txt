@@ -1,0 +1,69 @@
+Prompt: "what did the", 200 sampled tokens, temperature 0.8, seed 1.
+Each new line is a generated <eos> (end of joke); the model keeps generating after it.
+
+===== RNN =====
+what did the dad buffalo say when his cows? lean beef.
+i was walking down the street
+i just got a job helping and the legs time to turn around? because they are like in and this- an
+who was drying a glass-, who was drying a glass- oh.
+knock! knock! whos there? because it turned his little
+
+what are my greatest in first grade. it's always so attention!
+i found i love you... it was riveting.
+:" what did the bee go to the dentist? it saw the street anyway.
+i don't remember if it had a conversation with a joke.
+i can't stand russian dolls. a papa tomato, 6 you can i can only multiply... i said, i think id have to work on the head?
+, i know where you get oinkment...
+i was going to go to a clairvoyants!
+how do you make a joke about nitric oxide? no
+
+i had
+
+===== LSTM =====
+what did the great yarn race from the seaweed?* you're*.
+why should you get it away to the answer with a cowculator.
+why do elephants have? skeleton go to the sturgeon!
+this on
+what was the man who shot an aquarium?" i'll see your amusement:"
+the"" my grandpa." the" my way."
+what is so far so he said," i could say," how the other is so it says," why the long face?" what is your pet says"
+the" yeah," hey, i'm positive!*
+it was a girl and the silly is a rabbit.
+the" says" the street!" is a waist of water.
+why aren't you get into the sahara? nothing.
+the second
+the man
+what do you get when you cross soup?*
+it goes up.
+what the t- shirt do for of them called?"
+it goes to make a board aboard
+
+===== GRU =====
+what did the 0 say to the 8? nice belt!
+my son was the car go.
+this is an first... did you buy that so far out of this joke what he got me.
+this is yoda says the first and says," i'm a wholesaler.
+how do you get your an idiot? about the end of overheads.
+how do you pay for the first? nice belt.
+will good at watch? i think another joke?
+i made a great way to go with the appetizers or entrees, but eventually he has," no, i'm wearing them.
+how do you make a fish? it!
+this boy me.
+that the man say when is each other left.
+the" is telling me that he said" he was assaulted
+and a mop... citing that got called" in" life' em!
+that he passed]*" on a rip off?* then my head more!
+did you hear about the
+
+===== GRU 2-layer =====
+what did the dad buffalo say when his offspring left for college? bison
+the doctor i was going to die back from the same week.... to her shoes. a moment and a cow.
+i was watching a head who for a short and asked that this week. it was an isurfer on the dog.
+i was two week... a plane and as myself that i was drying a hand!
+why was a dog answers? he was a pretty p.
+i was this joke up she was a joke. i felt it was a little behind charged.
+i'm up, this morning and that had a police two while.... don't have no
+should it made a hole in it? she had a seen while says'
+one from a first says to the bucket. my mother told me this up with horrible.
+i was a pretty joke........ my 9 year old. i can't like up that my 9 while, my first
+
