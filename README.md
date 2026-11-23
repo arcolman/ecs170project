@@ -106,6 +106,24 @@ Unzip the instructor's `stage_4_data` so that `text_classification/` (with `trai
 
 **Shared rules (team guide):** use the same seed, split and preprocessing for every model. For RNN vs LSTM vs GRU, change only `rnn_type`. Name figures `<task>_<model>_<what>.png`. Results go to `result/stage_4_result/classification/`.
 
+### Stage 4 text generation (Person B)
+
+Put the instructor's CSV file named `data` in `data/stage_4_data/text_generation/`. It contains 1,622 short jokes. Generation preserves punctuation and stop words, uses a training-only vocabulary, and holds out 10% of normalized unique jokes for validation with split seed 42. Exact normalized duplicates stay in one split: 1,460 training and 162 validation examples. There is no provided generation test set.
+
+```bash
+python -m script.stage_4_script.test_generation
+python -m script.stage_4_script.script_rnn_gen
+python -m script.stage_4_script.sample_generation --prompt what did the
+```
+
+Use your virtual environment's Python (`.venv\Scripts\python.exe` on Windows). Outputs go to `result/stage_4_result/generation/`: checkpoint, vocabulary, split IDs, training/validation curves, nine generated samples, copying measurements, and `PERSON_B_report_text.txt` for the shared report. Completed runs are skipped unless `--fresh` is passed. Checkpoint sampling does not require the dataset.
+
+The vanilla RNN baseline uses 100-d learned embeddings, one 128-unit tanh recurrent layer, a vocabulary projection, Adam at 0.001, batch size 64, clipping 1.0 and 10 epochs. Model seed is 1; split seed is 42. The vocabulary has 4,468 tokens. Validation loss reaches 5.4643 (perplexity 236.11) at epoch 10. Samples have joke-like phrases but weak grammar, repetition and no reliable punchline. Loss is still decreasing; this is a fixed-budget baseline rather than evidence of full convergence.
+
+Person D can run `python -m script.stage_4_script.script_rnn_gen --unit lstm` and `--unit gru`; the model and helper support these units, but Person B has trained only the vanilla RNN. For the primary comparison, change only the unit. Reuse the exact prompts `what did the`, `why did the`, and `how do you`, sampling seeds 1/2/3, temperature 0.8, top-k 20, and at most 60 new tokens. Architecture experiments accept `--hidden-dim`, `--layers`, `--dropout`, and a distinct `--run-name`.
+
+Copying checks exclude the three supplied words and punctuation. Across nine samples, 0 of 57 eligible continuation five-grams occur in training text, and the longest match is four words. A short sample with no five-grams has an undefined match fraction, not zero. These counts do not establish language quality or novelty.
+
 ## Contributing
 
 Work on a branch, open a pull request into `main`, and get a teammate to look it over before merging. Commit code and the result files used in the report, but not the datasets.

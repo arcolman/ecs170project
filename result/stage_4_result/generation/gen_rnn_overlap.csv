@@ -1,0 +1,10 @@
+prompt,sample_seed,generated_text,continuation_words,fivegram_positions,matching_training_fivegrams,longest_training_match_words,stopped_on_eos
+what did the,1,what did the difference between a joke? because he was a duck? you,10,6,0,4,True
+what did the,2,what did the chicken call an umbrella of to the other of a pair........,11,7,0,3,True
+what did the,3,"what did the difference between the difference between a cow? he had a joke with a job? """,14,10,0,4,True
+why did the,1,why did the difference between a joke? because he was a duck? you,10,6,0,4,True
+why did the,2,why did the chicken call an umbrella of to the other of a pair........,11,7,0,3,True
+why did the,3,"why did the difference between the difference between a cow? he had a joke with a job? """,14,10,0,4,True
+how do you,1,how do you call a cow.,3,0,0,3,True
+how do you,2,how do you hear about a little in it? he wanted.,8,4,0,2,True
+how do you,3,how do you call a lightbulb of them? because he was the street? it.,11,7,0,3,True
