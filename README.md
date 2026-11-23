@@ -7,7 +7,7 @@ Team course project for ECS 170 (Artificial Intelligence) at UC Davis. Each stag
 | 1 | Group formation and environment setup | Done |
 | 2 | Handwritten digit classification with a multi-layer perceptron (MLP) | Done |
 | 3 | Image classification with convolutional neural networks (CNN) on MNIST, ORL faces and CIFAR-10 | In progress |
-| 4 | Text classification and generation with recurrent neural networks (RNN) | Not started |
+| 4 | Text classification and generation with recurrent neural networks (RNN) | In progress |
 | 5 | Node classification with graph neural networks (GCN) | Not started |
 
 ## Setup
@@ -81,6 +81,48 @@ Unzip the instructor's `stage_3_data.zip` so that the `MNIST`, `ORL` and `CIFAR`
 - **ORL / CIFAR models:** copy `Method_CNN_MNIST.py` and the MNIST script, then change `in_channels`, `input_size` and `output_dim`. Save their results to `result/stage_3_result/orl/` and `result/stage_3_result/cifar/`.
 - **Baseline result:** 2 conv blocks (16 and 32 filters, 5 × 5 kernels, ReLU, max-pool) and one fully connected layer reach **98.94%** test accuracy on MNIST (weighted F1 0.9894) after 10 epochs, taking 33 s on an Apple M-chip.
 - **Aron's MNIST reproduction and ablations:** the Windows CPU baseline reaches **98.91%** accuracy; 3x3 kernels reach **98.88%**, one conv block **98.50%**, and average pooling **98.86%**. All use seed 1 and 10 epochs. The current MNIST table, baseline history and plots use this CPU reproduction; the JSON-lines log also retains the earlier Apple run. Draft report text is in `result/stage_3_result/mnist/MNIST_report_text.md`.
+
+## Stage 4: RNN
+
+Unzip the instructor's `stage_4_data` so that `text_classification/` (with `train/` and `test/`) and `text_generation/` sit directly in `data/stage_4_data/`, then:
+
+```bash
+.venv/bin/python -m script.stage_4_script.check_data           # 4-1: dataset statistics, examples, review-length histogram
+.venv/bin/python -m script.stage_4_script.test_rnn             # quick check on synthetic data (no datasets needed)
+.venv/bin/python -m script.stage_4_script.script_rnn_cls       # vanilla RNN classifier: scores, curves, confusion matrix
+.venv/bin/python -m script.stage_4_script.script_rnn_cls lstm  # any run defined in RUNS (rnn, lstm, gru, ...)
+```
+
+**Classification data (IMDB reviews):** 25,000 train / 25,000 test, positive vs negative, balanced. `Dataset_Loader_IMDB`:
+- **Cleaning:** strips HTML line breaks, lowercases, removes punctuation, digits and stop words. Negations stay: "didn't" becomes "did not", and "not", "no" and "never" are kept.
+- **Validation split:** a fixed, stratified 10% of the training set (seed 42), used for the per-epoch validation curves. The test set is scored once.
+- **Vocabulary:** the 20,000 most frequent training words that appear at least twice. Every other word becomes `<unk>`.
+- **Output:** each review is padded or cut to 200 tokens. Every split is `{'X', 'lengths', 'y'}`.
+
+`Method_RNN_Classification`: embedding → recurrent layer(s) → linear, with sequences packed so padding is skipped.
+- **Recurrent unit:** `rnn_type` is `'rnn'`, `'lstm'` or `'gru'`. Everything else is shared, so the three units are compared under identical settings.
+- **Other settings:** `embedding_dim`, `embedding_weights` (e.g. GloVe via `load_glove`), `hidden_dim`, `num_layers`, `bidirectional`, `pooling` (`'last'`, `'mean'` or `'max'`), `dropout`, `grad_clip`, `restore_best`, plus the usual training options.
+- **Device:** runs on the CPU unless CUDA is available. For these models the Apple GPU is not faster: the vanilla RNN takes about 9 s per epoch on the CPU and about 66 s on MPS.
+
+**Shared rules (team guide):** use the same seed, split and preprocessing for every model. For RNN vs LSTM vs GRU, change only `rnn_type`. Name figures `<task>_<model>_<what>.png`. Results go to `result/stage_4_result/classification/`.
+
+### Stage 4 text generation (Person B)
+
+Put the instructor's CSV file named `data` in `data/stage_4_data/text_generation/`. It contains 1,622 short jokes. Generation preserves punctuation and stop words, uses a training-only vocabulary, and holds out 10% of normalized unique jokes for validation with split seed 42. Exact normalized duplicates stay in one split: 1,460 training and 162 validation examples. There is no provided generation test set.
+
+```bash
+python -m script.stage_4_script.test_generation
+python -m script.stage_4_script.script_rnn_gen
+python -m script.stage_4_script.sample_generation --prompt what did the
+```
+
+Use your virtual environment's Python (`.venv\Scripts\python.exe` on Windows). Outputs go to `result/stage_4_result/generation/`: checkpoint, vocabulary, split IDs, training/validation curves, nine generated samples, copying measurements, and `PERSON_B_report_text.txt` for the shared report. Completed runs are skipped unless `--fresh` is passed. Checkpoint sampling does not require the dataset.
+
+The vanilla RNN baseline uses 100-d learned embeddings, one 128-unit tanh recurrent layer, a vocabulary projection, Adam at 0.001, batch size 64, clipping 1.0 and 10 epochs. Model seed is 1; split seed is 42. The vocabulary has 4,468 tokens. Validation loss reaches 5.4643 (perplexity 236.11) at epoch 10. Samples have joke-like phrases but weak grammar, repetition and no reliable punchline. Loss is still decreasing; this is a fixed-budget baseline rather than evidence of full convergence.
+
+Person D can run `python -m script.stage_4_script.script_rnn_gen --unit lstm` and `--unit gru`; the model and helper support these units, but Person B has trained only the vanilla RNN. For the primary comparison, change only the unit. Reuse the exact prompts `what did the`, `why did the`, and `how do you`, sampling seeds 1/2/3, temperature 0.8, top-k 20, and at most 60 new tokens. Architecture experiments accept `--hidden-dim`, `--layers`, `--dropout`, and a distinct `--run-name`.
+
+Copying checks exclude the three supplied words and punctuation. Across nine samples, 0 of 57 eligible continuation five-grams occur in training text, and the longest match is four words. A short sample with no five-grams has an undefined match fraction, not zero. These counts do not establish language quality or novelty.
 
 ## Contributing
 

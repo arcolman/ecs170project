@@ -1,0 +1,13 @@
+{
+  "samples": 1622,
+  "unique_token_sequences": 1609,
+  "train_samples": 1460,
+  "validation_samples": 162,
+  "split_seed": 42,
+  "vocabulary_size": 4468,
+  "mean_tokens": 18.51048088779285,
+  "max_tokens_observed": 64,
+  "sequence_token_limit": 128,
+  "truncated_samples": 0,
+  "validation_unknown_fraction": 0.11281198003327787
+}

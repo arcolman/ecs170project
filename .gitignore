@@ -23,3 +23,7 @@ data/downloaded data/
 # Stage 3 image datasets are too large for GitHub (CIFAR > 100MB); share them through the drive
 data/stage_3_data/*
 !data/stage_3_data/.gitkeep
+
+# Stage 4 text datasets (50,000 review files + jokes); share them through the drive
+data/stage_4_data/*
+!data/stage_4_data/.gitkeep

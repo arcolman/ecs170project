@@ -1,0 +1,30 @@
+train: 25000 reviews, [12500, 12500] neg/pos
+  star ratings of negative reviews [np.int64(1), np.int64(2), np.int64(3), np.int64(4)], positive [np.int64(7), np.int64(8), np.int64(9), np.int64(10)]
+  raw words per review: mean 234, median 174, 85th pct 376, 95th pct 598, min 10, max 2470
+  tokens after cleaning (stop words removed): mean 122, median 91, 85th pct 199, 95th pct 317, min 4, max 1427
+  reviews containing HTML line breaks: 58.7%
+test: 25000 reviews, [12500, 12500] neg/pos
+  star ratings of negative reviews [np.int64(1), np.int64(2), np.int64(3), np.int64(4)], positive [np.int64(7), np.int64(8), np.int64(9), np.int64(10)]
+  raw words per review: mean 229, median 172, 85th pct 368, 95th pct 582, min 4, max 2278
+  tokens after cleaning (stop words removed): mean 120, median 89, 85th pct 193, 95th pct 309, min 3, max 1183
+  reviews containing HTML line breaks: 58.1%
+
+example reviews (train):
+  raw:     Story of a man who has unnatural feelings for a pig. Starts out with a opening scene that is a terrific example of absurd comedy. A formal orchestra audience is turned into an insane, violent mob by the crazy chantings of it's singers. Unfortunately it stays absurd the WHOLE time with no general nar
+  cleaned: story man unnatural feelings pig starts opening scene terrific example absurd comedy formal orchestra audience turned insane violent mob crazy chantings singers unfortunately stays absurd whole time no general narrative eventually making putting even era turned cryptic dialogue make shakespeare seem
+
+  raw:     Working-class romantic drama from director Martin Ritt is as unbelievable as they come, yet there are moments of pleasure due mostly to the charisma of stars Jane Fonda and Robert De Niro (both terrific). She's a widow who can't move on, he's illiterate and a closet-inventor--you can probably guess 
+  cleaned: working class romantic drama director martin ritt unbelievable come yet moments pleasure due mostly charisma stars jane fonda robert de niro terrific widow not move illiterate closet inventor probably guess rest adaptation pat barker novel union street better title laid back verges bland film editin
+
+loader output:
+loading data from /Users/gabrielvenezia/Developer/ecs170project/data/stage_4_data/text_classification...
+train: X=(22500, 200), [11250, 11250] neg/pos, 14.8% truncated to 200 tokens
+val: X=(2500, 200), [1250, 1250] neg/pos, 16.2% truncated to 200 tokens
+test: X=(25000, 200), [12500, 12500] neg/pos, 13.9% truncated to 200 tokens
+vocabulary: 20000 words (incl. <pad>, <unk>)
+distinct words in the training split: 69910, kept in the vocabulary: 19998
+20 most frequent words: ['not', 'movie', 'film', 'one', 'like', 'good', 'very', 'time', 'no', 'even', 'story', 'really', 'see', 'well', 'much', 'get', 'people', 'bad', 'great', 'also']
+train: 4.1% of tokens are <unk>
+val: 4.8% of tokens are <unk>
+test: 5.5% of tokens are <unk>
+Dataset checks passed. Ready for RNN training.
