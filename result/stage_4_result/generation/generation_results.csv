@@ -1,0 +1,2 @@
+run,epochs,best_epoch,validation_loss,validation_perplexity,training_seconds
+rnn,10,10,5.464299270923784,236.11034774186277,69.56715020001866

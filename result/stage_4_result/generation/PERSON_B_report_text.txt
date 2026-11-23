@@ -1,0 +1,34 @@
+STAGE 4 PERSON B REPORT CONTRIBUTION
+Aron Colman — Vanilla RNN joke generation
+
+Section 1 — Task description addition
+For text generation, we train a word-level recurrent model on short jokes and ask it to complete a joke from three starting words. We examine the generated wording, grammar, repetition, and overlap with the training jokes.
+
+Section 2 — Model description addition
+The generator consists of a learned 100-dimensional embedding, one unidirectional tanh RNN layer with 128 hidden units, and a linear layer mapping every hidden state to 4,468 vocabulary logits. It has 1,052,612 trainable parameters. Training predicts the next token at every position. A beginning-of-sequence token starts each joke and an end-of-sequence token teaches the model when to stop; padding is excluded from the loss. At generation time, the three prompt words initialize the hidden state, and each sampled token is fed back to predict the next token. Figure: gen_rnn_architecture.png.
+
+Section 3.1 — Generation dataset addition
+The instructor's CSV contains 1,622 jokes. We lowercase text and tokenize words, contractions, numbers, and punctuation while preserving stop words. Jokes average 18.51 tokens and have a maximum of 64; none exceed the 128-token cap. We reserve 10% of normalized unique jokes for validation (split seed 42), keeping exact normalized duplicates together. This gives 1,460 training and 162 validation examples. The vocabulary is fit on training jokes only and contains 4,468 tokens, including four special tokens. 11.28% of validation tokens map to the unknown token. The corpus has no instructor-provided generation test split, so these loss/perplexity results are validation measurements.
+
+Section 3.2 — Generation settings addition
+We use seed 1 for model initialization and batch order, Adam with learning rate 0.001, batch size 64, cross-entropy loss, gradient-norm clipping at 1.0, and 10 epochs. Embeddings are trained from scratch; no GloVe vectors or dropout are used. We restore the checkpoint with the lowest validation loss. Training ran on CPU with four threads and took 69.6 seconds. Generation uses temperature 0.8, top-k sampling with k=20, and at most 60 new tokens. The main prompt is "what did the"; additional prompts are "why did the" and "how do you". Each prompt uses sampling seeds 1, 2, and 3. Person D should reuse this split, vocabulary, settings, and exact prompts when comparing LSTM and GRU generators.
+
+Section 3.3 — Generation evaluation addition
+We report per-token cross-entropy and perplexity (exp(cross-entropy)) on validation jokes. For generated text, we also count five-word sequences appearing verbatim in the training corpus and measure the longest contiguous word match. We exclude the three supplied prompt words and punctuation from these overlap measures. Overlap measures copying, not grammatical or semantic correctness.
+
+Section 3.5 — Generation convergence addition
+Training loss decreased from 7.8426 to 4.6715; validation loss decreased from 6.8365 to 5.4643. The lowest validation loss was 5.4643 at epoch 10, corresponding to perplexity 236.11. Validation loss was still decreasing at the final epoch, so the 10-epoch run does not demonstrate full convergence. Figure: gen_rnn_loss.png.
+
+Section 3.6 — Vanilla RNN generation results addition
+Model: Vanilla RNN | Validation cross-entropy: 5.4643 | Validation perplexity: 236.11 | Selected epoch: 10
+
+Fixed sample ("what did the", sampling seed 1):
+"what did the difference between a joke? because he was a duck? you"
+
+Additional fixed sample ("how do you", sampling seed 1):
+"how do you call a cow."
+
+The samples resemble joke templates but do not form coherent jokes: the first example has an ill-formed question and no sensible punchline, while the second stops after a question rather than completing a joke. Other seeds repeat phrases or punctuation. With the same sampling seed, "what did the" and "why did the" produce identical continuations, suggesting weak sensitivity to the earlier prompt words in these examples. All nine samples stopped on the learned end token. Across the nine samples, 0/57 eligible continuation five-grams match the training jokes; the longest contiguous training match is 4 words. One short continuation has fewer than five words and therefore has no five-gram measurement. These sampled outputs show no copied five-word passages, but that does not establish novelty or good language quality, and this metric misses shorter phrase and punctuation repetition.
+
+Section 3.7 — Handoff note
+Person B supplies the vanilla RNN baseline and reusable generation/overlap code. Add Person D's LSTM/GRU generation comparisons and architecture ablations here; this contribution does not claim they have been run.

@@ -1,0 +1,37 @@
+VANILLA RNN GENERATED JOKES
+
+Prompt: what did the | sampling seed: 1
+what did the difference between a joke? because he was a duck? you
+Training five-gram matches: 0/6; longest training match: 4 words
+
+Prompt: what did the | sampling seed: 2
+what did the chicken call an umbrella of to the other of a pair........
+Training five-gram matches: 0/7; longest training match: 3 words
+
+Prompt: what did the | sampling seed: 3
+what did the difference between the difference between a cow? he had a joke with a job? "
+Training five-gram matches: 0/10; longest training match: 4 words
+
+Prompt: why did the | sampling seed: 1
+why did the difference between a joke? because he was a duck? you
+Training five-gram matches: 0/6; longest training match: 4 words
+
+Prompt: why did the | sampling seed: 2
+why did the chicken call an umbrella of to the other of a pair........
+Training five-gram matches: 0/7; longest training match: 3 words
+
+Prompt: why did the | sampling seed: 3
+why did the difference between the difference between a cow? he had a joke with a job? "
+Training five-gram matches: 0/10; longest training match: 4 words
+
+Prompt: how do you | sampling seed: 1
+how do you call a cow.
+Training five-gram matches: 0/0; longest training match: 3 words
+
+Prompt: how do you | sampling seed: 2
+how do you hear about a little in it? he wanted.
+Training five-gram matches: 0/4; longest training match: 2 words
+
+Prompt: how do you | sampling seed: 3
+how do you call a lightbulb of them? because he was the street? it.
+Training five-gram matches: 0/7; longest training match: 3 words
