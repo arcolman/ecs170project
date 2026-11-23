@@ -1,3 +1,5 @@
 config,accuracy,precision_weighted,recall_weighted,f1_weighted,f1_macro
+gru,0.8565,0.8571,0.8565,0.8564,0.8564
 rnn_mean_pool,0.8456,0.8467,0.8456,0.8454,0.8454
+lstm,0.8430,0.8437,0.8430,0.8429,0.8429
 rnn,0.8009,0.8009,0.8009,0.8009,0.8009

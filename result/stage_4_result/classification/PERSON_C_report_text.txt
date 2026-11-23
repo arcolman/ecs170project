@@ -1,0 +1,30 @@
+STAGE 4 PERSON C REPORT CONTRIBUTION (LSTM and GRU classifiers)
+
+=== Section 2: Model Description — replaces "[Person C: LSTM and GRU description ...]" ===
+
+LSTM and GRU classifiers. These use the same code, data and settings as the vanilla RNN (Figure 1); only the recurrent layer changes (rnn_type = 'lstm' or 'gru'), so any difference in results comes from the recurrent unit. Both units add gates: vectors of values between 0 and 1, computed from the current word x_t and the previous hidden state h_{t−1}, that decide how much old information to keep and how much new information to write. This lets information and gradients pass across many words without vanishing, which the vanilla RNN struggles with.
+The LSTM keeps a separate cell state c_t alongside h_t. A forget gate f_t, an input gate i_t and an output gate o_t (each σ(W x_t + U h_{t−1} + b)) and a candidate g_t = tanh(W_g x_t + U_g h_{t−1} + b_g) update it as c_t = f_t ⊙ c_{t−1} + i_t ⊙ g_t and h_t = o_t ⊙ tanh(c_t). Because c_t is updated by addition, a sentiment word near the start of a review can still reach the end when f_t ≈ 1. The GRU has no separate cell state and uses two gates: a reset gate r_t that controls how much of h_{t−1} feeds the candidate n_t = tanh(W_n x_t + b_n + r_t ⊙ (U_n h_{t−1} + b'_n)), and an update gate z_t that mixes old and new: h_t = (1 − z_t) ⊙ n_t + z_t ⊙ h_{t−1}. As with the RNN, the hidden state after the last real word, h_T (128-d; for the LSTM h_T, not c_T), goes to the Linear(128 → 2) layer. With 128 hidden units the LSTM layer has 117,760 parameters (4× the RNN's 29,440: one set per gate plus the candidate) and the GRU layer 88,320 (3×); the full models have 2.12M and 2.09M parameters, still dominated by the 2M-parameter embedding.
+
+=== Section 3.6: Model Performance — table rows (replace the [C] cells) ===
+
+Model        Accuracy  Precision  Recall  F1
+LSTM         0.8430    0.8437     0.8430  0.8429
+GRU          0.8565    0.8571     0.8565  0.8564
+(precision / recall / F1 are class-size-weighted, as for the vanilla RNN row)
+
+=== Section 3.6: paragraphs — paste below the Figure 6 caption, before "Model: Vanilla RNN | Validation cross-entropy..." ===
+
+GRU. Replacing the vanilla RNN unit with a GRU, with every other setting unchanged, raises test accuracy from 80.1% to 85.7% (F1 0.8564). It also beats the mean-pooled RNN (84.6%) while still classifying from the last hidden state alone. The update gate lets the GRU carry sentiment from early words through to the end of a review, which the vanilla RNN's last state does not do reliably. The GRU also learns faster: validation accuracy is 86.2% after 2 epochs (vanilla RNN: 74.3%) and peaks at 87.4% at epoch 5, whose weights we keep. Like the RNN, it overfits: validation loss is lowest at epoch 3 (0.33) and rises to 0.80 by epoch 10, while training accuracy reaches 99.8%. Its errors lean slightly toward the negative class: 87.7% of negative and 83.6% of positive test reviews are classified correctly.
+
+LSTM. The LSTM also improves on the vanilla RNN, reaching 84.3% test accuracy (F1 0.8429), but stays 1.4 points below the GRU and roughly level with the mean-pooled RNN (84.6%). Its validation accuracy rises more slowly than the GRU's (84.0% vs 87.3% at epoch 3) and reaches its best, 86.9%, only at epoch 10. Because we select the epoch by validation accuracy, the kept weights come from a point where validation loss has already risen from its minimum of 0.36 (epoch 5) to 0.69, so the model is overfit and overconfident on the reviews it gets wrong. It classifies 86.6% of negative and 82.0% of positive reviews correctly, the same slight lean toward the negative class as the GRU.
+
+Comparison. Under identical settings, both gated units beat the vanilla RNN's last hidden state by 4 to 6 points, which supports the view that the vanilla RNN's weakness is long-range memory. The GRU does best here with fewer parameters than the LSTM (88K vs 118K in the recurrent layer). Each model was trained once (seed 1, 10 epochs), so the 1.4-point gap between GRU and LSTM is not evidence that the GRU is better in general. Figure 8 compares the validation curves of the three models.
+
+=== Figure 8 (optional) — insert after the Figure 7 caption at the end of the report ===
+
+File: result/stage_4_result/classification/cls_rnn_lstm_gru_val_curves.png
+Caption: Figure 8: Validation loss (left) and accuracy (right) per epoch for the vanilla RNN, LSTM and GRU classifiers under identical settings. The large open marker shows the epoch whose weights were kept (best validation accuracy).
+
+=== Notes ===
+Training: both runs on an Apple M1 CPU (4 threads), run at the same time, so their training times (LSTM 51 min, GRU 44 min for 10 epochs) are slower than either would be alone and are not comparable with the vanilla RNN's 88 s, which was measured on a different machine.
+Data: the public Stanford IMDB dataset (aclImdb v1); the data check reproduces Gabriel's statistics exactly (same counts, lengths, examples, split sizes and truncation rates).

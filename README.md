@@ -106,6 +106,24 @@ Unzip the instructor's `stage_4_data` so that `text_classification/` (with `trai
 
 **Shared rules (team guide):** use the same seed, split and preprocessing for every model. For RNN vs LSTM vs GRU, change only `rnn_type`. Name figures `<task>_<model>_<what>.png`. Results go to `result/stage_4_result/classification/`.
 
+### Stage 4 LSTM and GRU classifiers (Person C)
+
+```bash
+.venv/bin/python -m script.stage_4_script.script_rnn_cls lstm
+.venv/bin/python -m script.stage_4_script.script_rnn_cls gru
+.venv/bin/python -m script.stage_4_script.plot_cls_comparison   # RNN / LSTM / GRU validation curves in one figure
+```
+
+The `lstm` and `gru` runs change only `rnn_type`; every other setting matches the vanilla RNN baseline (seed 1, 10 epochs, weights of the best validation-accuracy epoch kept). Test results:
+
+| Run | Accuracy | F1 (weighted) | Selected epoch | Best val. accuracy |
+|---|---|---|---|---|
+| rnn | 0.8009 | 0.8009 | 10 | 0.8180 |
+| lstm | 0.8430 | 0.8429 | 10 | 0.8688 |
+| gru | **0.8565** | **0.8564** | 5 | 0.8744 |
+
+Both gated units beat the vanilla RNN by 4–6 points; the GRU is best and learns fastest (86.2% validation accuracy after 2 epochs). Both overfit after a few epochs: validation loss is lowest at epoch 3 (GRU) and 5 (LSTM), then rises. Each model was trained once, so the 1.4-point GRU–LSTM gap is not a general ranking. On an Apple M1 CPU (4 threads) an LSTM epoch takes about 4 min alone; the two runs shared the CPU and took 51 min (LSTM) and 44 min (GRU). The data was the public Stanford IMDB set (aclImdb v1), and `check_data` reproduces the statistics above exactly. Figures are `cls_{lstm,gru}_curves.png`, `cls_{lstm,gru}_confusion.png` and `cls_rnn_lstm_gru_val_curves.png`. Report text is in `result/stage_4_result/classification/PERSON_C_report_text.txt`.
+
 ### Stage 4 text generation (Person B)
 
 Put the instructor's CSV file named `data` in `data/stage_4_data/text_generation/`. It contains 1,622 short jokes. Generation preserves punctuation and stop words, uses a training-only vocabulary, and holds out 10% of normalized unique jokes for validation with split seed 42. Exact normalized duplicates stay in one split: 1,460 training and 162 validation examples. There is no provided generation test set.
